@@ -1,0 +1,5 @@
+- Please do not violate DRY Principle
+- Keep in mind of SOLID Principle
+- Do not add comments to code unncessarily
+- Try to limit docstrings when you can
+- All API calls must be wrapped in try/except blocks.
