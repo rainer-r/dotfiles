@@ -1,0 +1,11 @@
+scan_timeout = 100
+
+[cmd_duration]
+min_time = 100
+style = "white"
+format = "[$duration]($style) "
+
+[gcloud]
+disabled = true
+# Only show if these files are present in the current directory
+detect_files = ['google-cloud-sdk', '.gcloudignore', 'GEMINI.md']
