@@ -1,0 +1,286 @@
+/* ══════════════════════════════════════════════════════════
+   Waybar · Catppuccin Mocha · Arch / Hyprland
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Palette ─────────────────────────────────────────────── */
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color overlay0 #6c7086;
+@define-color text     #cdd6f4;
+@define-color subtext  #a6adc8;
+@define-color blue     #89b4fa;
+@define-color lavender #b4befe;
+@define-color teal     #94e2d5;
+@define-color sky      #89dceb;
+@define-color green    #a6e3a1;
+@define-color yellow   #f9e2af;
+@define-color peach    #fab387;
+@define-color red      #f38ba8;
+@define-color mauve    #cba6f7;
+@define-color pink     #f5c2e7;
+@define-color sapphire #74c7ec;
+
+/* ── Reset ───────────────────────────────────────────────── */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Bar ─────────────────────────────────────────────────── */
+window#waybar {
+    background: transparent;
+    color: @text;
+}
+
+/* ── Left / Right pill containers ───────────────────────── */
+.modules-left,
+.modules-right {
+    background: @base;
+    border-radius: 10px;
+    border: 1px solid @surface0;
+    padding: 0 2px;
+}
+
+/* ── Shared module padding ───────────────────────────────── */
+#custom-arch,
+#workspaces,
+#custom-dunst,
+#tray,
+#pulseaudio,
+#intel_backlight,
+#temperature-cpu,
+#custom-gputemp,
+#memory,
+#network,
+#battery,
+#clock,
+#custom-power {
+    padding: 4px 11px;
+    color: @text;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* ── Hover state (all modules) ───────────────────────────── */
+#pulseaudio:hover,
+#backlight:hover,
+#temperature-cpu:hover,
+#custom-gputemp:hover,
+#memory:hover,
+#network:hover,
+#battery:hover,
+#clock.time:hover,
+#custom-dunst:hover {
+    background: @surface0;
+    border-radius: 8px;
+}
+
+/* ─────────────────────────────────────────────────────────
+   LEFT SIDE
+   ───────────────────────────────────────────────────────── */
+
+/* Arch icon */
+#custom-arch {
+    color: @blue;
+    font-size: 17px;
+    padding: 2px 13px 2px 9px;
+    border-right: 1px solid @surface1;
+}
+
+#custom-arch:hover {
+    color: @lavender;
+    background: @surface0;
+    border-radius: 10px 0 0 10px;
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 4px 9px;
+    color: @overlay0;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    min-width: 22px;
+}
+
+#workspaces button:hover {
+    color: @text;
+    background: @surface0;
+}
+
+#workspaces button.active {
+    color: @blue;
+    background: @surface0;
+    box-shadow: inset 0 -2px @blue;
+    font-weight: 700;
+}
+
+#workspaces button.urgent {
+    color: @base;
+    background: @red;
+}
+
+/* ── Taskbar ── */
+#taskbar {
+    background: transparent;
+    padding: 0 4px;
+    border-left: 1px solid @surface1;
+}
+
+#taskbar button {
+    padding: 3px 6px;
+    color: @overlay0;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    min-width: 28px;
+
+}
+
+#taskbar button:hover {
+    color: @text;
+    background: @surface0;
+}
+
+#taskbar button.active {
+    color: @blue;
+    background: @surface0;
+    box-shadow: inset 0 -2px @blue;
+}
+
+#taskbar button.minimized {
+    color: @overlay0;
+    box-shadow: inset 0 -2px @surface1;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   RIGHT SIDE
+   ───────────────────────────────────────────────────────── */
+
+/* Notification / dunst toggle */
+#custom-dunst {
+    color: @teal;
+    font-size: 15px;
+}
+
+/* Notification Tray */
+#tray {
+    padding: 4px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+    border-radius: 4px;
+}
+
+/* Volume */
+#pulseaudio { color: @green; }
+#pulseaudio.muted { color: @overlay0; }
+
+/* Brightness */
+#backlight { color: @yellow; }
+
+/* Temperature */
+#temperature-cpu { color: @peach; }
+
+/* #temperature.critical { */
+/*     color: @red; */
+/*     animation: blink 1s linear infinite; */
+/* } */
+
+#custom-gputemp {
+    color: #a6e3a1;
+    padding: 4px 10px;
+    transition: background 0.15s ease;
+}
+
+#custom-gputemp:hover {
+    background: @surface0;
+    border-radius: 8px
+}
+
+/* RAM */
+#memory { color: @mauve; }
+
+/* WiFi / Network */
+#network { color: @sapphire; }
+#network.disconnected { color: @overlay0; }
+
+/* Battery */
+#battery { color: @green; }
+#battery.charging,
+#battery.plugged  { color: @teal; }
+#battery.warning:not(.charging) { color: @yellow; }
+#battery.critical:not(.charging) {
+    color: @red;
+    animation: blink 1s linear infinite;
+}
+
+/* Time */
+#clock.time {
+    color: @lavender;
+    font-weight: 600;
+}
+
+/* Date + calendar */
+#clock.date {
+    color: @pink;
+    border-left: 1px solid @surface1;
+    padding-left: 11px;
+}
+
+#clock.date:hover {
+    background: @surface0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Power button */
+#custom-power {
+    color: @red;
+    font-size: 15px;
+    padding: 4px 12px 4px 10px;
+    border-left: 1px solid @surface1;
+}
+
+#custom-power:hover {
+    color: @base;
+    background: @red;
+    border-radius: 0 10px 10px 0;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────── */
+tooltip {
+    background: @mantle;
+    border: 1px solid @surface1;
+    border-radius: 10px;
+    color: @text;
+    padding: 6px 12px;
+}
+
+tooltip label {
+    font-size: 12px;
+    color: @text;
+}
+
+/* ── Blink ───────────────────────────────────────────────── */
+@keyframes blink {
+    to { opacity: 0.35; }
+}
